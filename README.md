@@ -1,0 +1,2 @@
+# EgA
+RPI EgA configuration
