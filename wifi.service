@@ -1,0 +1,16 @@
+[Unit]
+Description= Wireless Networking
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+
+ExecStart=/usr/bin/ip link set dev wlan0 up
+ExecStart=/usr/bin/wpa_supplicant -D wext -i wlan0 -c /etc/wpa_supplicant/home_network.conf -B
+
+ExecStop=/usr/bin/killall -s SIGKILL wpa_supplicant
+ExecStop=/usr/bin/ip addr flush dev wlan0
+ExecStop=/usr/bin/ip link set dev wlan0 down
+
+[Install]
+WantedBy=multi-user.target

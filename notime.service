@@ -1,0 +1,10 @@
+[Unit]
+Description=E-mail notification service
+After=local-fs.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/notime_demonizer.sh
+
+[Install]
+WantedBy=multi-user.target
