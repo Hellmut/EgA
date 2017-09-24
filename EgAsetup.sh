@@ -41,3 +41,28 @@ chmod u+x /usr/bin/notime_demonizer.sh
 systemctl daemon-reload
 systemctl enable notime.service
 systemctl start notime.service
+
+#Install apache server
+pacman -S apache
+
+#Copy apache conifg file
+cp ./http/httpd.conf /etc/httpd/conf/
+
+#Install php
+pacman -S php php-apache
+
+#Install sqlite
+pacman -S php-sqlite
+
+#enable sqlite support in php
+sed -i 's/;extension=sqlite3.so/extension=sqlite3.so/g' /etc/php/php.ini
+
+
+#Copy webpage
+cp -r ./http/http /srv/
+
+
+# Start apache server
+systemctl enable httpd
+systemctl start httpd
+
