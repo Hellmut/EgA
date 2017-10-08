@@ -1,0 +1,10 @@
+[Unit]
+Description=Setup gpio
+After=local-fs.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/gpio_setup.sh
+
+[Install]
+WantedBy=multi-user.target

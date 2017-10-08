@@ -21,9 +21,12 @@ systemctl daemon-reload
 systemctl enable wifi.service
 systemctl start wifi.service
 
+
+
 # install ssmtp
 pacman -S ssmtp
 cp ssmtp.conf /etc/ssmtp/
+
 
 
 # install notime
@@ -41,6 +44,20 @@ chmod u+x /usr/bin/notime_demonizer.sh
 systemctl daemon-reload
 systemctl enable notime.service
 systemctl start notime.service
+
+
+
+#install gpio service (enable gpio control with user privileges)
+cp gpio.service /etc/systemd/system/
+cp gpio_setup.sh /usr/bin/
+
+chmod u+x /usr/bin/gpio_setup.sh
+
+#start gpio service
+systemctl enable gpio.service
+systemctl start gpio.service
+
+
 
 #Install apache server
 pacman -S apache
